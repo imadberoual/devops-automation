@@ -9,7 +9,7 @@ pipeline {
             sh 'mvn clean install'
         }
         stage('Build docker image'){
-            sh 'docker build -t javatechie/devops-integration .'
+            sh 'docker build -t imdbr/devops-integration .'
         }
         stage('Push image to hub'){
             steps{
@@ -17,7 +17,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                      sh 'docker login -u imdbr -p ${dockerhubpwd}'
 }
-                    sh 'docker push javatechie/devops-integration'
+                    sh 'docker push imdbr/devops-integration'
                 }
             }
         }
